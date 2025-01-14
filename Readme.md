@@ -1,4 +1,4 @@
-# README: Lung Segmentation and Classification Pipeline
+# Lung Pneumonia Classification: Accuracy 97%
 
 This repository contains a comprehensive pipeline for performing lung segmentation and disease classification using convolutional neural networks (CNNs). The project is divided into several stages, including preprocessing, U-Net segmentation training, classification training, and testing.
 
@@ -44,7 +44,18 @@ python train_cls.py
 
 ---
 
-## **4. Testing**
+## **4. End-to-End Training Pipeline**
+To train both U-Net and classifier models in a single script, use:
+
+### **Command**
+Run the end-to-end training pipeline with:
+```bash
+python train.py
+```
+
+---
+
+## **5. Testing**
 The testing phase evaluates the performance of the U-Net model by overlaying predicted masks onto original images.
 
 ### **Command**
