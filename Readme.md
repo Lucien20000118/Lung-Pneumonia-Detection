@@ -4,6 +4,8 @@ This repository contains a comprehensive pipeline for performing lung segmentati
 
 ---
 
+![Struction](img/struction.png)
+
 ## **1. Preprocessing**
 The preprocessing stage handles the preparation of the datasets for segmentation and classification tasks.
 
@@ -42,23 +44,8 @@ python train_cls.py
 
 ---
 
-## **4. End-to-End Training Pipeline**
-To train both U-Net and classifier models in a single script, use:
-
-### **Command**
-Run the end-to-end training pipeline with:
-```bash
-python train.py
-```
-
----
-
-## **5. Testing**
+## **4. Testing**
 The testing phase evaluates the performance of the U-Net model by overlaying predicted masks onto original images.
-
-### **Script**
-`test.py`
-
 
 ### **Command**
 Test the U-Net model with:
@@ -68,7 +55,7 @@ python test.py
 
 ---
 
-## **6. Evaluation**
+## **5. Evaluation**
 
 ### **Metrics**
 - **Segmentation**: IoU, Dice Coefficient, Pixel Accuracy, Precision, Recall, Specificity
