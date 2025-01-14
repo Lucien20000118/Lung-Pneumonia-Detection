@@ -11,13 +11,6 @@ The preprocessing stage handles the preparation of the datasets for segmentation
 - **Lung Segmentation Dataset**: Used to train the U-Net model for lung segmentation.
 - **Chest X-ray Pneumonia Dataset**: Used to train the classifier for detecting diseases (e.g., pneumonia).
 
-### **Steps**
-1. Download datasets using Kaggle API:
-    - Lung segmentation dataset: `iamtapendu/chest-x-ray-lungs-segmentation`
-    - Pneumonia classification dataset: `paultimothymooney/chest-xray-pneumonia`
-2. Save datasets locally under the `datasets` directory.
-3. Reorganize the classification dataset to split `NORMAL` and `PNEUMONIA` images into `train` and `val` directories using the script in `preprocess.py`.
-
 ### **Command**
 Run preprocessing with:
 ```bash
@@ -28,15 +21,6 @@ python preprocess.py
 
 ## **2. U-Net Segmentation Training**
 The U-Net model is trained to segment lungs from chest X-ray images.
-
-### **Script**
-`train_mask.py`
-
-### **Key Features**
-- Splits dataset into training and validation sets.
-- Logs training and validation losses, IoU, Dice Coefficient, and other metrics.
-- Implements early stopping and learning rate adjustment.
-- Saves the best model weights to `output/best_unet.pth`.
 
 ### **Command**
 Train the U-Net model with:
@@ -49,14 +33,6 @@ python train_mask.py
 ## **3. Classification Training**
 The classification model uses the U-Net segmentation output and the original chest X-ray to classify images as `NORMAL` or `PNEUMONIA`.
 
-### **Script**
-`train_cls.py`
-
-### **Key Features**
-- Loads pre-trained U-Net weights for lung segmentation.
-- Combines original images and segmentation masks as inputs to the classifier.
-- Logs metrics like loss, accuracy, AUC, precision, and recall.
-- Saves the best model weights to `output/best_classifier.pth`.
 
 ### **Command**
 Train the classifier with:
@@ -68,14 +44,6 @@ python train_cls.py
 
 ## **4. End-to-End Training Pipeline**
 To train both U-Net and classifier models in a single script, use:
-
-### **Script**
-`train.py`
-
-### **Features**
-- Phase 1: Trains U-Net for segmentation.
-- Phase 2: Trains classifier using U-Net outputs.
-- Combines all features of `train_mask.py` and `train_cls.py`.
 
 ### **Command**
 Run the end-to-end training pipeline with:
