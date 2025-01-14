@@ -7,7 +7,6 @@ import os
 from tools.model import UNet, LungDataset
 import random
 
-# Paths and Hyperparameters
 current_dir = os.getcwd()
 destination_path = os.path.join(current_dir, "lung_segmentation_dataset/Chest-X-Ray")
 image_dir = os.path.join(destination_path, "image")
@@ -39,7 +38,6 @@ image_batch = image.unsqueeze(0).to(device)
 # Perform Inference
 with torch.no_grad():
     probabilities = unet_model(image_batch)  # Model outputs logits
-    # probabilities = torch.sigmoid(logits)  # Apply sigmoid to get probabilities
 
 # Post-process the Output
 predicted_mask = probabilities.squeeze(0).cpu().numpy()

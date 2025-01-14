@@ -18,7 +18,6 @@ class CSVLogger:
             writer.writerow([epoch, train_loss, val_loss] + metrics)
 
 
-# Model saver class to handle saving weights
 class ModelSaver:
     def __init__(self, filename):
         self.filename = filename

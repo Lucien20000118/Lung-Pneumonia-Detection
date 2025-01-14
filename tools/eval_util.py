@@ -4,7 +4,7 @@ Evaluation tools for segmentation
 
 import cv2
 import numpy as np
-import torch
+
 
 def iou(pred, target, smooth=1e-6):
     """

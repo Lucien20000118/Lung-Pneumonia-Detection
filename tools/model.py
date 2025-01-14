@@ -1,8 +1,8 @@
+import os
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset
 from PIL import Image
-import os
 
 
 # Dataset Class for Segmentation
@@ -25,9 +25,7 @@ class LungDataset(Dataset):
         if self.transform:
             image = self.transform(image)
             mask = self.transform(mask)
-        
-        # print(f"Mask min: {mask.min().item()}, Mask max: {mask.max().item()}")
-        # print(f"Image min: {image.min().item()}, Image max: {image.max().item()}")
+
         return image, mask
 
 
@@ -47,12 +45,12 @@ class ClassificationDataset(Dataset):
                 self.images.append(os.path.join(class_dir, img_name))
                 self.labels.append(label)
                 
-        # Get the size of the first image as a reference
+
         if self.images:
             with Image.open(self.images[0]) as img:
-                self.image_size = img.size  # (width, height)
+                self.image_size = img.size  
         else:
-            self.image_size = None  # Handle case with no images
+            self.image_size = None 
 
     def __len__(self):
         return len(self.images)
@@ -66,8 +64,6 @@ class ClassificationDataset(Dataset):
             image = self.transform(image)
 
         return image, label
-
-
 
 
 class UNet(nn.Module):
@@ -107,13 +103,12 @@ class UNet(nn.Module):
         self.final = nn.Conv2d(128, 1, kernel_size=1)
 
     def forward(self, x):
-        enc1 = self.encoder1(x) # dwon 1
-        enc2 = self.encoder2(self.pool1(enc1)) # dwon 2 
-        enc3 = self.encoder3(self.pool2(enc2)) # dwon 3
-        enc4 = self.encoder4(self.pool3(enc3)) # dwon 4
+        enc1 = self.encoder1(x)
+        enc2 = self.encoder2(self.pool1(enc1)) 
+        enc3 = self.encoder3(self.pool2(enc2))
+        enc4 = self.encoder4(self.pool3(enc3))
 
-        
-        bottleneck = self.bottleneck(self.pool4(enc4)) # down 5
+        bottleneck = self.bottleneck(self.pool4(enc4))
 
         dec4 = torch.cat((enc4, self.up4(bottleneck)), dim=1)
         dec3 = torch.cat((enc3, self.up3(dec4)), dim=1)
@@ -129,7 +124,7 @@ class DepthwiseClassifier(nn.Module):
     def __init__(self, input_channel, output_channel, img_size, classes_num):
         super(DepthwiseClassifier, self).__init__()
         
-        # 定義卷積模塊
+
         def conv_block(in_channels, out_channels):
             return nn.Sequential(
                 nn.Conv2d(in_channels, out_channels, kernel_size=2, padding=1),
@@ -139,29 +134,21 @@ class DepthwiseClassifier(nn.Module):
         def size_calculate(x, kernel_size = 2, padding = 1, stride = 1):
             return ((x + padding*2)- (kernel_size-1))//stride
             
-            
+         
         self.conv = conv_block(input_channel, output_channel)
         
-        # 計算經過卷積後的特徵圖大小
-        self.conv_output_size = img_size  # 假設 padding=1，stride=1，輸出大小與輸入相同
         aft_size = size_calculate(img_size) 
         
-
-        # 計算全連接層的輸入大小
         self.fc_input_size = output_channel * aft_size * aft_size
-        # self.fc = nn.Sequential(
-        #     nn.Linear(self.fc_input_size, self.fc_input_size//1000),
-        #     nn.Linear(self.fc_input_size//1000, classes_num),
-        # )
         self.fc = nn.Linear(self.fc_input_size, classes_num)
+        
     def forward(self, x):
-        # 卷積操作
+
         x = self.conv(x)
 
-        # 平展特徵圖
         x = x.view(x.size(0), -1)  # Batch size, flatten features
 
-        # 全連接層
+
         output = self.fc(x)
         
         return output
