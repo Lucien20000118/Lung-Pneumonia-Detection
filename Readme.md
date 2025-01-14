@@ -56,10 +56,6 @@ python train.py
 ## **5. Testing**
 The testing phase evaluates the performance of the U-Net model by overlaying predicted masks onto original images.
 
-### **Script**
-`test.py`
-
-
 ### **Command**
 Test the U-Net model with:
 ```bash
