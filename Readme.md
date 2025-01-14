@@ -44,18 +44,7 @@ python train_cls.py
 
 ---
 
-## **4. End-to-End Training Pipeline**
-To train both U-Net and classifier models in a single script, use:
-
-### **Command**
-Run the end-to-end training pipeline with:
-```bash
-python train.py
-```
-
----
-
-## **5. Testing**
+## **4. Testing**
 The testing phase evaluates the performance of the U-Net model by overlaying predicted masks onto original images.
 
 ### **Command**
