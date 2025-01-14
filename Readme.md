@@ -91,11 +91,6 @@ The testing phase evaluates the performance of the U-Net model by overlaying pre
 ### **Script**
 `test.py`
 
-### **Key Features**
-- Randomly selects an image from the dataset.
-- Uses the trained U-Net model to generate segmentation masks.
-- Overlays the predicted mask and ground truth onto the original image.
-- Displays results using `matplotlib`.
 
 ### **Command**
 Test the U-Net model with:
@@ -106,10 +101,9 @@ python test.py
 ---
 
 ## **6. Evaluation**
-Evaluation metrics for segmentation and classification tasks are implemented in `eval_util.py`.
 
 ### **Metrics**
-- **Segmentation**: IoU, Dice Coefficient, Pixel Accuracy, Precision, Recall, Specificity, Boundary IoU.
+- **Segmentation**: IoU, Dice Coefficient, Pixel Accuracy, Precision, Recall, Specificity
 - **Classification**: Accuracy, AUC, Precision, Recall.
 
 These metrics are logged during training and saved to CSV files for analysis.
