@@ -1,4 +1,4 @@
-Lung Pneumonia Classification: Accuracy 97%
+# Lung Pneumonia Classification: Accuracy 97%
 
 This repository contains a comprehensive pipeline for performing lung segmentation and disease classification using convolutional neural networks (CNNs). The project is divided into several stages, including preprocessing, U-Net segmentation training, classification training, and testing.
 
