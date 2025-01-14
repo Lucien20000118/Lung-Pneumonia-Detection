@@ -53,7 +53,7 @@ python train.py
 --- -->
 
 
-## **5. Testing**
+## **4. Testing**
 The testing phase evaluates the performance of the U-Net model by overlaying predicted masks onto original images.
 
 ### **Command**
@@ -64,7 +64,7 @@ python test.py
 
 ---
 
-## **6. Evaluation**
+## **5. Evaluation**
 
 ### **Metrics**
 - **Segmentation**: IoU, Dice Coefficient, Pixel Accuracy, Precision, Recall, Specificity
