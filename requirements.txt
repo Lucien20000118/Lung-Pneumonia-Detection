@@ -1,0 +1,18 @@
+# Usage: pip install -r requirements.txt
+
+# Base ----------------------------------------
+kagglehub>=1.0.0
+shutil  # part of Python standard library
+os  # part of Python standard library
+random  # part of Python standard library
+matplotlib>=3.2.2
+Pillow>=7.1.2
+numpy>=1.18.5,<1.24.0
+time  # part of Python standard library
+tqdm>=4.41.0
+csv  # part of Python standard library
+
+# Training ------------------------------------
+torch>=1.7.0,!=1.12.0
+torchvision>=0.8.1,!=0.13.0
+scikit-learn>=0.24.0
