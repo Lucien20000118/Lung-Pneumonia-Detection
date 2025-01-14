@@ -113,6 +113,9 @@ Evaluation metrics for segmentation and classification tasks are implemented in 
 - **Classification**: Accuracy, AUC, Precision, Recall.
 
 These metrics are logged during training and saved to CSV files for analysis.
+![Segmentation Metrics](img/segmentation_metrics_plot.png)
+![Segmentation Losses](img/unet_loss_plot.png)
+![Segmentation Metrics](img/validation_metrics_plot.png)
 
 ---
 
